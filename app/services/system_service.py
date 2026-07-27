@@ -1,10 +1,12 @@
+from app.config.settings import settings
+
 class SystemService:
 
     def get_api_status(self):
 
         return {
-            "name": "John Deere Backend API",
-            "version": "1.0.0",
+            "name": settings.app_name,
+            "version": settings.app_version,
             "status": "online"
         }
 

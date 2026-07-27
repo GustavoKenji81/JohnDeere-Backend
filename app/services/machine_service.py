@@ -1,0 +1,30 @@
+from app.repositories.machine_repository import MachineRepository
+
+
+class MachineService:
+
+    def __init__(self):
+        self.repository = MachineRepository()
+
+
+    def get_all(self):
+        return self.repository.find_all()
+
+
+    def get_by_id(self, machine_id):
+        return self.repository.find_by_id(machine_id)
+
+    def create(self, machine_data):
+        machines = self.repository.find_all()
+
+        new_machine = {
+
+            "id": len(machines) + 1,
+
+            "name": machine_data.name,
+
+            "status": machine_data.status
+
+        }
+
+        return self.repository.save(new_machine)
