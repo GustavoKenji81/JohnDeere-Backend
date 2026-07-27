@@ -1,8 +1,8 @@
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException, Depends, status
 
 from app.dependencies.machine_dependency import get_machine_service
 from app.services.machine_service import MachineService
-from app.schemas.machine_schema import MachineResponse
+from app.schemas.machine_schema import MachineResponse, MachineCreate
 
 router = APIRouter(
     prefix="/machines",
@@ -31,3 +31,8 @@ def get_by_id(machine_id: int, machine_service: MachineService = Depends(get_mac
         )
 
     return machine
+
+@router.post("/", response_model=MachineResponse, status_code=status.HTTP_201_CREATED)
+def create_machine(machine: MachineCreate, machine_service: MachineService = Depends(get_machine_service)):
+
+    return machine_service.create(machine)
