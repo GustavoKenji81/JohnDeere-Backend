@@ -33,3 +33,9 @@ class MachineRepository:
                 return machine
 
         return None
+    
+    def save(self, machine):
+
+        self.machines.append(machine)
+
+        return machine
