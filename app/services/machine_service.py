@@ -1,10 +1,11 @@
 from app.repositories.machine_repository import MachineRepository
+from sqlalchemy.orm import Session
 
 
 class MachineService:
 
-    def __init__(self):
-        self.repository = MachineRepository()
+    def __init__(self, db: Session):
+        self.repository = MachineRepository(db)
 
 
     def get_all(self):
@@ -28,3 +29,4 @@ class MachineService:
         }
 
         return self.repository.save(new_machine)
+

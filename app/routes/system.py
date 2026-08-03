@@ -16,8 +16,12 @@ def home():
 def health():
     return system_service.get_health()
 
-@router.get("/database-info")
+@router.get("/database")
 def database_info():
-    return {
-        "engine": str(engine.url)
-    }
+
+    return system_service.get_database_info()
+
+@router.get("/database/test")
+def test_database():
+
+    return system_service.test_database_connection()

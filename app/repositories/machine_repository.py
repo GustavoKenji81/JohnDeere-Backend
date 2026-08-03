@@ -1,6 +1,11 @@
+from sqlalchemy.orm import Session
+
+
 class MachineRepository:
 
-    def __init__(self):
+    def __init__(self, db: Session):
+
+        self.db = db
 
         self.machines = [
 
@@ -39,3 +44,4 @@ class MachineRepository:
         self.machines.append(machine)
 
         return machine
+
