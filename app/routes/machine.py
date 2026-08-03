@@ -1,5 +1,4 @@
 from fastapi import APIRouter, HTTPException, Depends, status
-
 from app.dependencies.machine_dependency import get_machine_service
 from app.services.machine_service import MachineService
 from app.schemas.machine_schema import MachineResponse, MachineCreate
@@ -9,7 +8,7 @@ router = APIRouter(
     tags=["Machines"]
 )
 
-machine_service = MachineService()
+
 
 
 @router.get("/", response_model=list[MachineResponse])
@@ -36,3 +35,4 @@ def get_by_id(machine_id: int, machine_service: MachineService = Depends(get_mac
 def create_machine(machine: MachineCreate, machine_service: MachineService = Depends(get_machine_service)):
 
     return machine_service.create(machine)
+
